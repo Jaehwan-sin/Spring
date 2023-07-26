@@ -11,6 +11,10 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 <a href="./board/loginform">loginform</a> <br />
-<a href="./board/studentform">studentform</a>
+<a href="./board/studentform">studentform</a> <br />
+<a href="./join/joinform">joinform</a> <br />
+<a href="studentConfirm">studentconfirm</a> <br />
+<a href="studentConfirm?id=abc">studentconfirmOk</a> <br />
+<a href="studentConfirm?id=a">studentconfirmNg</a>
 </body>
 </html>
