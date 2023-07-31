@@ -14,6 +14,9 @@
             tr:nth-child(odd) { /* 홀수행 색 다르게 짝수는 even */
                     background-color: #f7f9fc;
             }
+            #title {
+                    text-align: left;
+            }
 </style>
 </head>
 <body>
@@ -30,7 +33,17 @@
         <tr>
         	<td>${dto.pzid }</td>
         	<td>${dto.pzname }</td>
-        	<td><a href="pzcontent_view?pzid=${dto.pzid }">${dto.pzsubj }</a></td>
+     <%-- <td><a href="pzcontent_view?pzid=${dto.pzid }">${dto.pzsubj }</a></td> --%>
+        	<td id="title">
+        	  <c:set value="${dto.pzintent } " var="endintent"/>
+        	   <c:forEach begin="1" end="${dto.pzintent }" var="cnt">
+        	       &nbsp;
+        	       <c:if test="${cnt eq endintent }">
+                                        <img src="resources/img/arrow.png" alt="arrow.png" />
+                  </c:if>
+        	   </c:forEach>
+        	        <a href="pzcontent_view?pzid=${dto.pzid }">${dto.pzsubj }</a>
+        	</td>
         	<td>${dto.pzdate }</td>
         	<td>${dto.pzhit }</td>
         </tr> 

@@ -32,10 +32,10 @@
                 </tr>
                 <tr>
                         <td colspan="2" class="content_view_bottom">
-                           수정 <br />
-                           <a href="pzlist">목록</a> <br />
-                           <a href="PizzaDelete?pzid=${pzcontent_view.pzid }">삭제</a> <br />  
-                           답변 <br />     
+                           <a href="PizzaUpdate?pzid=${pzcontent_view.pzid }">수정</a> &nbsp;&nbsp;
+                           <a href="pzlist">목록</a> &nbsp;&nbsp;
+                           <a href="PizzaDelete?pzid=${pzcontent_view.pzid }">삭제</a> &nbsp;&nbsp;  
+                          <a href="pzreply_view?pzid=${pzcontent_view.pzid }">답변</a>   
                         </td>
                 </tr>
         </table>
