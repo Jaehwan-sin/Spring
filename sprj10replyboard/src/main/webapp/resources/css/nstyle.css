@@ -17,3 +17,6 @@ th, td {
 tr:hover {
 	background-color: green;
 }
+#contentview_bottom {
+	text-align: center;
+}

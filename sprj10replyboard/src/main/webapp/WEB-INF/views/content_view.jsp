@@ -32,10 +32,10 @@
                         <td>${content_view.bcontent }</td>
                 </tr>
                 <tr>
-                        <td colspan="2">
-                           수정 <br />
-                           목록 <br />
-                           삭제 <br />  
+                        <td colspan="2" id="contentview_bottom">
+                                  <a href="content_update?bid=${content_view.bid }"> 수정 </a><br /><!-- 38 수정작업 -->
+                                  <a href="list">목록 </a><br />
+                                  <a href="delete?bid=${content_view.bid }"> 삭제 </a><br /><!-- 46 삭제작업 -->
                            답변 <br />     
                         </td>
                 </tr>

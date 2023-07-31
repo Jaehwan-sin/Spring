@@ -5,9 +5,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.tech.sprj09.service.BContentViewService;
+import com.tech.sprj09.service.BDeleteService;
 import com.tech.sprj09.service.BListService;
+import com.tech.sprj09.service.BModifyService;
 import com.tech.sprj09.service.BServiceInter;
 import com.tech.sprj09.service.BWriteService;
 
@@ -56,5 +59,40 @@ public class BController {
 				bServiceInter.execute(model);
 				
 				return "content_view";
+			}
+			
+			/* 39 update 매핑 */
+			@RequestMapping("/content_update")
+			public String content_update(HttpServletRequest request, Model model) {
+				
+				/* 41 수정은 뷰와 같기 때문에 그대로 사용 / 글 수정 form */
+				model.addAttribute("request",request);
+				bServiceInter = new BContentViewService();
+				bServiceInter.execute(model);
+				
+				return "content_update";
+			}
+			
+			/* 43 modify 매핑 method가 post방식일 땐 아래처럼 한다.*/
+			@RequestMapping(method = RequestMethod.POST, value =  "/modify")
+			public String modify(HttpServletRequest request, Model model) {
+				
+				/* 글 수정 update */
+				model.addAttribute("request",request);
+				bServiceInter = new BModifyService();
+				bServiceInter.execute(model);
+				
+				return "redirect:list";
+			}
+			
+			/*47 delete 매핑*/
+			@RequestMapping("/delete")
+			public String delete(HttpServletRequest request, Model model) {
+				System.out.println("Delete 신호");
+				model.addAttribute("request",request);
+				bServiceInter = new BDeleteService();
+				bServiceInter.execute(model);
+				
+				return "redirect:list";
 			}
 }
