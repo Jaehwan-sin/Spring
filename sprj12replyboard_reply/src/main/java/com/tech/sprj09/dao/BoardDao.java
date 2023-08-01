@@ -278,7 +278,6 @@ public class BoardDao {
 						// TODO: handle exception
 					}
 				}
-				
 					return dto;
 
 			}
