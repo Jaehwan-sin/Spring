@@ -22,7 +22,7 @@
 <body>
 <!-- 4 -->
 <h2>list.jsp</h2>
-<table width="500" border="1">
+<table width="1000" border="1">
         <tr>
                 <td>번호</td>
                 <td>이름</td>

@@ -17,7 +17,7 @@ public class BoardDao {
 	
 			DataSource dataSource; // 12 DataSource 선언, 서버 폴더에 context.xml 내용 추가 필요
 			
-			/* 10 생성자 만들기*/
+			/* 10 생성자 만들기*/ 
 			public BoardDao() {
 				System.out.println("BoardDao 신호");
 				/* 13 생성자 호출을 이용해서 DB 접속 */
@@ -302,8 +302,7 @@ public class BoardDao {
 					int rn1 = replyShape(bgroup,bstep,con);// 커넥션을 가지고 간다. / 72 int 타입 변경
 					int rn2 = 0; // 76
 					System.out.println("rn1 : "+rn1);
-					
-					
+
 					String sql = "insert into replyboard(bid,bname,btitle,bcontent,bgroup,bstep,bindent) values(replyboard_seq.nextval,?,?,?,?,?,?)";  
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, bname);
@@ -347,10 +346,11 @@ public class BoardDao {
 				PreparedStatement pstmt = null;
 				int rn1 = 0; // 74
 				
+				
 				try {
 //					con = dataSource.getConnection(); 전달 받아서 필요없음
 					String sql = "update replyboard set bstep=bstep+1 where bgroup=? and bstep>?";  
-					con = null; // 81
+//					con = null; // 81
 					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, Integer.parseInt(bgroup));
 					pstmt.setInt(2, Integer.parseInt(bstep));
