@@ -1,0 +1,42 @@
+spring 게시판 만들기 작업 순서
+    230727
+        home list 링크
+        BController 생성 ~~.controller
+        list() 메소드 맵핑
+        list.jsp 생성
+      테이블작성
+        BController list() 수정추가
+      데이터 가져오기
+        com.tech.sprj09.service  패키지생성
+        BServiceInter 인터페이스
+        BListService 클래스 생성
+        
+        BoardDao 생성  dao패키지
+        Server에 context.xml에 dbcp설정
+        BoardDto생성 dto패키지
+        dao.list()메소드생성및
+        db접속 전체글 가져오기 코드작성
+      드라이버연결 pom작업
+        BListService에서 리턴받기
+        model에 ArrayList<BoardDto> 적재
+        list.jsp에서 forEach문을 통해 뿌려주기
+       
+      230728 
+        -------------------
+        list.jsp 글쓰기링크추가
+        BController write_view()코드작성
+        nstyle.css작성 적용
+        write()작성
+        finally 작업
+        
+        ---------------
+        contentview작업
+        list수정
+        BController  content_view()추가
+        content_view.jsp생성
+        BContentViewService생성
+        BoardDao contentView()작업
+        db에서 해당글을 select해서
+        dto에 담아 리턴
+
+      
