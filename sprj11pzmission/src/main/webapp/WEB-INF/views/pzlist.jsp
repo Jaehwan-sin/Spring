@@ -16,12 +16,13 @@
             }
             #title {
                     text-align: left;
+                    width: 300px;
             }
 </style>
 </head>
 <body>
 <h2>pzlist.jsp</h2>
-<table width="500" border="1">
+<table width="1000" border="1">
         <tr>
                 <td>번호</td>
                 <td>이름</td>
@@ -35,18 +36,19 @@
         	<td>${dto.pzname }</td>
      <%-- <td><a href="pzcontent_view?pzid=${dto.pzid }">${dto.pzsubj }</a></td> --%>
         	<td id="title">
-        	  <c:set value="${dto.pzintent } " var="endintent"/>
-        	   <c:forEach begin="1" end="${dto.pzintent }" var="cnt">
-        	       &nbsp;
-        	       <c:if test="${cnt eq endintent }">
-                                        <img src="resources/img/arrow.png" alt="arrow.png" />
-                  </c:if>
-        	   </c:forEach>
-        	        <a href="pzcontent_view?pzid=${dto.pzid }">${dto.pzsubj }</a>
+        	       <c:set value="${dto.pzintent}" var="endintent" />
+					<c:forEach begin="1" end="${dto.pzintent}" var="cnt">
+							    &nbsp;
+							    <c:if test="${cnt eq endintent}">
+							        <!-- <img src="resources/img/arrow.png" alt="arrow.png" /> -->
+							        [re]
+							    </c:if>
+					</c:forEach> 
+        	        <a href="pzcontent_view?pzid=${dto.pzid }">${dto.pzsubj } </a>
         	</td>
         	<td>${dto.pzdate }</td>
         	<td>${dto.pzhit }</td>
-        </tr> 
+        </tr>  
 </c:forEach>
          <tr> 
                 <td colspan="5"><a href="pzwrite_view">글쓰기</a></td>

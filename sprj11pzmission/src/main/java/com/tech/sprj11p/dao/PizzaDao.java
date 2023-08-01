@@ -85,7 +85,7 @@ public class PizzaDao {
 					pstmt.setString(2, pzsubj);
 					pstmt.setString(3, pzcontent);
 					pstmt.executeUpdate();
-				} catch (SQLException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} finally {
@@ -101,6 +101,8 @@ public class PizzaDao {
 			}
 
 			public PizzaDto PizzaContentView(String pzaid) {
+				
+				upHit(pzaid);
 				
 				PizzaDto dto = null;
 				Connection con = null;
@@ -141,6 +143,32 @@ public class PizzaDao {
 					}
 				}
 				return dto;
+			}
+
+			private void upHit(String pzaid) {
+				
+				Connection con = null;
+				PreparedStatement pstmt = null;
+				
+				try {
+					con = dataSource.getConnection();
+					String sql = "update pz_board set pzhit=pzhit+1 where pzid=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, pzaid);
+					pstmt.executeUpdate();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} finally {
+					try {
+						// 사용한 자원 회수
+						if (pstmt!=null) pstmt.close();
+						if (con!=null) con.close();
+					} catch (Exception e2) {
+						// TODO: handle exception
+					}
+				}
+				
 			}
 
 			public void delete(String pzid) {
@@ -258,10 +286,10 @@ public class PizzaDao {
 					pstmt.setString(2, pzsubj);
 					pstmt.setString(3, pzcontent);
 					pstmt.setInt(4, Integer.parseInt(pzgroup));
-					pstmt.setInt(5, Integer.parseInt(pzstep));
-					pstmt.setInt(6, Integer.parseInt(pzintent));
+					pstmt.setInt(5, Integer.parseInt(pzstep)+1);
+					pstmt.setInt(6, Integer.parseInt(pzintent)+1);
 					pstmt.executeUpdate();
-				} catch (SQLException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} finally {
@@ -282,15 +310,11 @@ public class PizzaDao {
 				
 				try {
 					con = dataSource.getConnection();
-					System.out.println("sql문 전");
-					String sql = "update pz_board set pzstep=pzstep+1  where pzgroup=? and pzstep>? ";
-					System.out.println("sql문 후");
+					String sql = "update pz_board set pzstep=pzstep+1 where pzgroup=? and pzstep>?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, Integer.parseInt(pzgroup));
 					pstmt.setInt(2, Integer.parseInt(pzstep));
-					System.out.println("업데이트 전");
 					pstmt.executeUpdate();
-					System.out.println("업데이트 후");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
