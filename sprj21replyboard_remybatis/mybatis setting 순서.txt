@@ -1,0 +1,62 @@
+스프링 버전업
+5.1.11
+
+porm.xml 추가
+<!-- mybatis -->
+      <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jdbc</artifactId>
+          <version>${org.springframework-version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+      <dependency>
+          <groupId>commons-dbcp</groupId>
+          <artifactId>commons-dbcp</artifactId>
+          <version>1.4</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+      <dependency>
+          <groupId>org.mybatis</groupId>
+          <artifactId>mybatis</artifactId>
+          <version>3.4.1</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+      <dependency>
+          <groupId>org.mybatis</groupId>
+          <artifactId>mybatis-spring</artifactId>
+          <version>1.3.0</version>
+      </dependency>
+
+servlet-context.xml 추가
+ <!--3번째 mybatis setting -->
+    <beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+           <beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+           <beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+           <beans:property name="username" value="hr"/>
+           <beans:property name="password" value="123456"/>
+    </beans:bean>
+    <beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+           <beans:property name="dataSource" ref="dataSource"/>
+           <beans:property name="mapperLocations" value="classpath:com/tech/sprj09/dao/mapper/*.xml"/>
+    </beans:bean>
+    <beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+           <beans:constructor-arg index="0" ref="sqlSessionFactory"/>
+    </beans:bean>
+
+
+mapper패키지만들기   IDao.xml생성
+mybatis 홈페이지
+mapper파일 형식 복사
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tech.sprj09.dao.IDao">
+    
+
+</mapper>
+
+dao패키지에 IDao.java 인터페이스 생성
+
+실행 okkkkkk
