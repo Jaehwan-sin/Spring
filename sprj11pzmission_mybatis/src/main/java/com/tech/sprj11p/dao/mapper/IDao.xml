@@ -1,0 +1,45 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.tech.sprj11p.dao.IDao">
+        <select id="pzlist" resultType="com.tech.sprj11p.dto.PizzaDto">
+                SELECT PZID,PZNAME,PZSUBJ,PZCONTENT,PZDATE,PZHIT,PZGROUP,PZSTEP,PZINTENT
+                FROM PZ_BOARD ORDER BY PZGROUP DESC,PZSTEP ASC
+        </select>
+        
+        <insert id="write">
+                 INSERT INTO PZ_BOARD VALUES
+                 (PZ_BOARD_SEQ.NEXTVAL,#{param1},#{param2},#{param3},SYSDATE,0,PZ_BOARD_SEQ.CURRVAL,0,0)
+        </insert>
+        
+        <select id="PizzaContentView" resultType="com.tech.sprj11p.dto.PizzaDto">
+                SELECT PZID,PZNAME,PZSUBJ,PZCONTENT,PZDATE,PZHIT,PZGROUP,PZSTEP,PZINTENT 
+                FROM PZ_BOARD WHERE PZID=#{param1}
+        </select>
+        
+        <delete id="delete">
+                DELETE FROM PZ_BOARD WHERE PZID=#{param1}
+        </delete>
+        
+        <update id="upHit">
+                UPDATE PZ_BOARD SET PZHIT=PZHIT+1 WHERE PZID=#{param1}
+        </update>
+        
+        <update id="PizzaModify">
+                UPDATE PZ_BOARD  SET PZNAME=#{param2},  PZSUBJ=#{param3},  PZCONTENT=#{param4} WHERE PZID=#{param1}
+        </update>
+        
+        <select id="PizzaReplyView" resultType="com.tech.sprj11p.dto.PizzaDto">
+                SELECT PZID,PZNAME,PZSUBJ,PZCONTENT,PZDATE,PZHIT,PZGROUP,PZSTEP,PZINTENT
+                FROM PZ_BOARD WHERE PZID=#{param1}
+        </select>
+        
+        <insert id="PizzaReply">
+                INSERT INTO PZ_BOARD(PZID,PZNAME,PZSUBJ,PZCONTENT,PZGROUP,PZSTEP,PZINTENT) VALUES(PZ_BOARD_SEQ.NEXTVAL,#{param2},#{param3},#{param4},#{param5},#{param6}+1,#{param7}+1)
+        </insert>
+        
+        <update id="replyShape">
+                UPDATE PZ_BOARD SET PZSTEP=PZSTEP+1 WHERE PZGROUP=#{param1} AND PZSTEP>#{param2}
+        </update>
+</mapper>
