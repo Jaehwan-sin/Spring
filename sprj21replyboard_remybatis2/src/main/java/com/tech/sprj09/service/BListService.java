@@ -21,7 +21,11 @@ public class BListService implements BServiceInter {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		String strPage = request.getParameter("page");
-			
+		
+		if (strPage == null) {
+			strPage = "1";
+		}
+		
 		System.out.println("page : "+strPage);
 		int page = Integer.parseInt(strPage);
 		
