@@ -1,0 +1,63 @@
+<!-- 4번째 -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 8 mapper하기  sql문이 select라 select를 쓰고
+ id는 list를 호출하기 때문에 그걸 쓰고 resultType은 정확한 경로를 설정한다.-->
+ <!-- 리턴 타입이 있을때 resultType 사용 -->
+<mapper namespace="com.tech.sprj09.dao.IDao">
+    <select id="list" resultType="com.tech.sprj09.dto.BoardDto">
+    <!-- 소문자는 가끔 오류나서 대문자로 Ctrl+Shift+X -->
+            <!-- SELECT BID,BNAME,BTITLE,BCONTENT,BDATE,BHIT,BGROUP,BSTEP,BINDENT 
+            FROM REPLYBOARD 
+            ORDER BY BGROUP DESC,BSTEP ASC -->
+            <!-- 11 SQL문 작성 -->
+            SELECT * FROM
+			(SELECT ROWNUM NUM,N. * FROM 
+			(SELECT * FROM REPLYBOARD ORDER BY BGROUP DESC, BSTEP ASC) N)
+			WHERE NUM BETWEEN #{param1} AND #{param2}
+    </select>
+    
+    <insert id="write"><!-- param1,2,3은 인터페이스에서 보내는 순서이다. -->
+            INSERT INTO REPLYBOARD VALUES
+            (REPLYBOARD_SEQ.NEXTVAL,#{param1},#{param2},#{param3},SYSDATE,0,REPLYBOARD_SEQ.CURRVAL,0,0)
+    </insert>
+    
+    <select id="contentView"  resultType="com.tech.sprj09.dto.BoardDto" >
+             SELECT BID,BNAME,BTITLE,BCONTENT,BDATE,BHIT,BGROUP,BSTEP,BINDENT 
+             FROM REPLYBOARD WHERE BID=#{param1} 
+    </select>
+    
+    <update id="modify">
+             UPDATE REPLYBOARD 
+             SET BNAME=#{param2}, BTITLE=#{param3}, 
+             BCONTENT=#{param4} WHERE BID=#{param1}
+    </update>
+    
+    <update id="upHit">
+            UPDATE REPLYBOARD SET BHIT=BHIT+1 WHERE BID=#{param1}
+    </update>
+    
+    <delete id="delete">
+            DELETE REPLYBOARD WHERE BID=#{param1}
+    </delete>
+    
+    <select id="replyView" resultType="com.tech.sprj09.dto.BoardDto" >
+            SELECT BID,BNAME,BTITLE,BCONTENT,BDATE,BHIT,BGROUP,BSTEP,BINDENT 
+            FROM REPLYBOARD WHERE BID=#{param1}    
+    </select>
+    
+    <insert id="reply">
+            INSERT INTO REPLYBOARD(BID,BNAME,BTITLE,BCONTENT,BGROUP,BSTEP,BINDENT)
+             VALUES(REPLYBOARD_SEQ.NEXTVAL,#{param2},#{param3},#{param4},#{param5},#{param6}+1,#{param7}+1)
+    </insert>
+    
+    <update id="replyShape">
+            UPDATE REPLYBOARD SET BSTEP=BSTEP+1 WHERE BGROUP=#{param1} AND BSTEP>#{param2}
+    </update>
+    
+    <select id="selectBoardTotCount" resultType="Integer">
+            SELECT COUNT(*) FROM REPLYBOARD
+    </select>
+</mapper>
