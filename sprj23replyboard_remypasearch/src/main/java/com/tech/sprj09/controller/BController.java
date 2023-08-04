@@ -68,6 +68,24 @@ public class BController {
 					}
 				}
 				
+				// 검색 결과 유지
+				String bt = request.getParameter("btitle");
+				String bc = request.getParameter("bcontent");
+				
+				if (bt != null) {
+					if (bt.equals("btitle")) {
+						btitle = bt;
+						model.addAttribute("btitle", "true");// $13
+					} 
+				}
+				
+				if (bc != null) {
+					if (bc.equals("bcontent")) {
+						bcontent = bc;
+						model.addAttribute("bcontent", "true");// $13
+					} 
+				}
+				
 				// key값 (검색어) 가져오기 $4
 				String searchKeyword = request.getParameter("sk");
 				if (searchKeyword==null) { // home.jsp에서 list를 누르면 searchKeyword가 null일 수 밖에없어서 빈칸으로 바꿔준다.

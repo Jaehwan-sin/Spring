@@ -84,7 +84,8 @@ totCnt : ${totRowcnt } <br />
 	                            <span style="color: red; font-weight: bold">${i }</span>                
 	                </c:when>
 	                <c:otherwise>
-	                            <a href="list?page=${i }"  id="page">${i }</a>
+	                             <!-- 검색 결과 유지 -->
+	                            <a href="list?page=${i }&sk=${resk}&btitle=${btitle==true?'btitle':''}&bcontent=${bcontent==true?'bcontent':''}"  id="page">${i }</a>
 	                </c:otherwise>
 	        </c:choose>
 	</c:forEach>
