@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 <style>
             table {
                     text-align: center;
@@ -17,9 +18,9 @@
             #title {
                     text-align: left;
             }
-            #page a {
-                    text-align: left;
-            }
+            #page {
+                    text-decoration: none;
+             }
 </style>
 </head>
 <body>
@@ -59,6 +60,41 @@
 <!-- 13 현재페이지/토탈페이지:1/10 나타내기-->
 totCnt : ${totRowcnt } <br />
 현재페이지/토탈페이지 : ${searchVO.page } / ${searchVO.totPage }
+
+<hr /> <!-- 페이징 처리 #1 
+<a href="list?page=1">1</a> -->
+<!-- #16 -->
+<c:if test="${searchVO.page>1}">
+        <a href="list?page=1"><i class="fa-solid fa-angles-left"></i></a>
+        <a href="list?page=${searchVO.page-1 }"><i class="fa-solid fa-angle-left fa-beat"></i></a>
+</c:if>
+<!-- 14 -->
+<c:forEach begin="${searchVO.pageStart }" end="${searchVO.pageEnd }" var="i">
+        <c:choose>
+                <c:when test="${i eq searchVO.page }"><!-- 내가 클릭한 페이지의 숫자랑 같냐 -->
+                            <span style="color: red; font-weight: bold">${i }</span>                
+                </c:when>
+                <c:otherwise>
+                            <a href="list?page=${i }"  id="page">${i }</a>
+                </c:otherwise>
+        </c:choose>
+</c:forEach>
+<!-- 15 화살표 넣기 (페이지 그룹 구분)-->
+<c:if test="${searchVO.page < searchVO.totPage}">
+        <a href="list?page=${searchVO.page+1 }"><i class="fa-solid fa-angle-right fa-beat"></i></a>
+        <a href="list?page=${searchVO.totPage }"><i class="fa-solid fa-angles-right"></i></a>
+</c:if>
+<style>
+.fa-solid {
+        color : #333;
+        size: 1.2pm;
+}
+.fa-solid:hover {
+        color : orange;
+}
+</style>
+
+<%-- 
 <hr /> <!-- 페이징 처리 #1 
 <a href="list?page=1">1</a> -->
 <!-- #16 -->
@@ -73,7 +109,7 @@ totCnt : ${totRowcnt } <br />
                             <span style="color: red; font-weight: bold">${i }</span>                
                 </c:when>
                 <c:otherwise>
-                            <a href="list?page=${i }" style="text-decoration: none">${i }</a>
+                            <a href="list?page=${i }"  id="page">${i }</a>
                 </c:otherwise>
         </c:choose>
 </c:forEach>
@@ -81,9 +117,7 @@ totCnt : ${totRowcnt } <br />
 <c:if test="${searchVO.page < searchVO.totPage}">
         <a href="list?page=${searchVO.page+1 }">다음</a>
         <a href="list?page=${searchVO.totPage }">마지막</a>
-</c:if>
-
-
-
+</c:if> 
+--%>
 </body>
 </html>
