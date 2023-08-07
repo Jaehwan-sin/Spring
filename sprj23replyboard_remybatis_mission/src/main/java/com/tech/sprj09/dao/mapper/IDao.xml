@@ -1,0 +1,96 @@
+<!-- 4번째 -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 8 mapper하기  sql문이 select라 select를 쓰고
+ id는 list를 호출하기 때문에 그걸 쓰고 resultType은 정확한 경로를 설정한다.-->
+ <!-- 리턴 타입이 있을때 resultType 사용 -->
+<mapper namespace="com.tech.sprj09.dao.IDao">
+
+<sql id="includeList">
+        <choose>
+                <when test="param4==1">
+                        WHERE BRD_TITLE LIKE '%' || #{param3} || '%'
+                </when>
+                <when test="param4==2">
+                        WHERE BRD_CONTENT LIKE '%' || #{param3} || '%'
+                </when>
+                <when test="param4==3">
+                        WHERE BRD_TITLE LIKE '%' || #{param3} || '%'
+                        OR BRD_CONTENT LIKE '%' || #{param3} || '%'
+                </when>
+                <otherwise>
+                
+                </otherwise>
+        </choose>
+</sql>
+
+    <select id="list" resultType="com.tech.sprj09.dto.BoardDto">
+             SELECT * FROM
+            (SELECT ROWNUM NUM,N. * FROM (SELECT * FROM REPLYBOARD2 ORDER BY BRD_DATE DESC) N
+                     <include refid="includeList"/>
+            )
+            WHERE NUM BETWEEN #{param1} AND #{param2}
+    </select>
+    
+    <select id="selectBoardTotCount1" resultType="Integer">
+            SELECT COUNT (*) FROM REPLYBOARD2 WHERE BRD_TITLE LIKE '%' || #{param1} || '%'
+    </select>
+    
+    <select id="selectBoardTotCount2" resultType="Integer">
+            SELECT COUNT (*) FROM REPLYBOARD2 WHERE BRD_CONTENT LIKE '%' || #{param1} || '%'
+    </select>
+    
+    <select id="selectBoardTotCount3" resultType="Integer">
+            SELECT COUNT (*) FROM REPLYBOARD2 WHERE BRD_TITLE LIKE '%' || #{param1} || '%' OR BRD_CONTENT LIKE '%' || #{param1} || '%'
+    </select>
+    
+    <select id="selectBoardTotCount4" resultType="Integer">
+            SELECT COUNT (*) FROM REPLYBOARD2
+    </select>
+    
+    
+    
+    <!-- <select id="selectBoardTotCount" resultType="Integer">
+            SELECT COUNT(*) FROM REPLYBOARD2
+    </select> -->
+    
+    <insert id="write"><!-- param1,2,3은 인터페이스에서 보내는 순서이다. -->
+            INSERT INTO REPLYBOARD2 VALUES
+            (REPLYBOARD2_SEQ.NEXTVAL,#{param1},#{param2},#{param3},SYSDATE,0,REPLYBOARD2_SEQ.CURRVAL,0,0)
+    </insert>
+    
+    <select id="contentView"  resultType="com.tech.sprj09.dto.BoardDto" >
+             SELECT BRD_ID,BRD_NAME,BRD_TITLE,BRD_CONTENT,BRD_DATE,BRD_HIT,BRD_GROUP,BRD_STEP,BRD_INDENT
+             FROM REPLYBOARD2 WHERE BRD_ID=#{PARAM1}
+    </select>
+    
+    <update id="modify">
+             UPDATE REPLYBOARD2
+             SET BRD_NAME=#{param2}, BRD_TITLE=#{param3}, 
+             BRD_CONTENT=#{param4} WHERE BRD_ID=#{param1}
+    </update>
+    
+    <update id="upHit">
+            UPDATE REPLYBOARD2 SET BRD_HIT=BRD_HIT+1 WHERE BRD_ID=#{param1}
+    </update>
+    
+    <delete id="delete">
+            DELETE REPLYBOARD2 WHERE BRD_ID=#{param1}
+    </delete>
+    
+    <select id="replyView" resultType="com.tech.sprj09.dto.BoardDto" >
+            SELECT BRD_ID,BRD_NAME,BRD_TITLE,BRD_CONTENT,BRD_DATE,BRD_HIT,BRD_GROUP,BRD_STEP,BRD_INDENT 
+            FROM REPLYBOARD2 WHERE BRD_ID=#{param1}    
+    </select>
+    
+    <insert id="reply">
+            INSERT INTO REPLYBOARD2(BRD_ID,BRD_NAME,BRD_TITLE,BRD_CONTENT,BRD_GROUP,BRD_STEP,BRD_INDENT)
+             VALUES(REPLYBOARD2_SEQ.NEXTVAL,#{param2},#{param3},#{param4},#{param5},#{param6}+1,#{param7}+1)
+    </insert>
+    
+    <update id="replyShape">
+            UPDATE REPLYBOARD2 SET BRD_STEP=BRD_STEP+1 WHERE BRD_GROUP=#{param1} AND BSTEP>#{param2}
+    </update>
+</mapper>
