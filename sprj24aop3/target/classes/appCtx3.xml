@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+    <bean id="logAop" class="com.tech.aop3.LogAop"/>
+    <aop:aspectj-autoproxy/>
+        
+    <bean id="myCat" class="com.tech.aop3.Cats">
+            <property name="name" value="고양이"/>
+            <property name="age" value="1"/>
+            <property name="color" value="yellow"/>
+    </bean>
+    
+    <bean id="student" class="com.tech.aop3.Student">
+            <property name="name" value="홍길동"/>
+            <property name="age" value="20"/>
+            <property name="gradeNum" value="3"/>
+            <property name="classNum" value="5"/>
+    </bean>
+    
+    <bean id="worker" class="com.tech.aop3.Worker">
+            <property name="name" value="홍길동2"/>
+            <property name="age" value="30"/>
+            <property name="job" value="개발자"/>
+    </bean>
+    
+    <bean id="bottle" class="com.tech.ex.Bottle">
+            <property name="name" value="홍길동3"/>
+            <property name="kind" value="소주"/>
+            <property name="price" value="5000"/>
+    </bean>
+
+</beans>

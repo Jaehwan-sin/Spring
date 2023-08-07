@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+    <bean id="logAop" class="com.tech.aop1.LogAop"/>
+    <!-- aop 설정하기 -->
+    <aop:config>
+            <aop:aspect id="logger" ref="logAop">
+                    <!-- pointcut(핵심기능위치)에 id=publicM이고, com.tech.aop1 패키지에 있는 모든 클래스에 공통 기능을 적용하겠다. -->
+                    <aop:pointcut expression="within(com.tech.aop1.*)" id="publicM"/>
+                    <!-- 적용방식은 어라운드 방식으로 loggerAop라는 기능을 publicM이라는 pointcut에 적용 -->
+                    <aop:around method="loggerAop" pointcut-ref="publicM"/>
+            </aop:aspect>
+    </aop:config>
+    
+    <bean id="myCat" class="com.tech.aop1.Cats">
+            <property name="name" value="고양이"/>
+            <property name="age" value="1"/>
+            <property name="color" value="yellow"/>
+    </bean>
+    
+    
+
+</beans>
