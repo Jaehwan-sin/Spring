@@ -74,9 +74,13 @@ totCnt : ${totRowcnt } <br />
 	<a href="list?page=1">1</a> -->
 	<!-- #16 -->
 	<c:if test="${searchVO.page>1}">
-	        <a href="list?page=1"><i class="fa-solid fa-angles-left"></i></a>
-	        <a href="list?page=${searchVO.page-1 }"><i class="fa-solid fa-angle-left fa-beat"></i></a>
-	</c:if>
+            <a href="list?page=1&sk=${resk}&btitle=${btitle==true?'btitle':''}&bcontent=${bcontent==true?'bcontent':''}">
+                <i class="fa-solid fa-angle-double-left"></i>
+            </a>
+            <a href="list?page=${searchVO.page - 1}&sk=${resk}&btitle=${btitle==true?'btitle':''}&bcontent=${bcontent==true?'bcontent':''}">
+                <i class="fa-solid fa-angle-left fa-beat"></i>
+            </a>
+    </c:if>
 	<!-- 14 -->
 	<c:forEach begin="${searchVO.pageStart }" end="${searchVO.pageEnd }" var="i">
 	        <c:choose>
@@ -91,9 +95,13 @@ totCnt : ${totRowcnt } <br />
 	</c:forEach>
 	<!-- 15 화살표 넣기 (페이지 그룹 구분)-->
 	<c:if test="${searchVO.page < searchVO.totPage}">
-	        <a href="list?page=${searchVO.page+1 }"><i class="fa-solid fa-angle-right fa-beat"></i></a>
-	        <a href="list?page=${searchVO.totPage }"><i class="fa-solid fa-angles-right"></i></a>
-	</c:if>
+        <a href="list?page=${searchVO.page + 1}&sk=${resk}&btitle=${btitle==true?'btitle':''}&bcontent=${bcontent==true?'bcontent':''}">
+            <i class="fa-solid fa-angle-right fa-beat"></i>
+        </a>
+        <a href="list?page=${searchVO.totPage}&sk=${resk}&btitle=${btitle==true?'btitle':''}&bcontent=${bcontent==true?'bcontent':''}">
+            <i class="fa-solid fa-angle-double-right"></i>
+        </a>
+    </c:if>
 	<div><!-- 검색 $1 form 추가 -->
 	       <c:choose>
 	               <c:when test="${btitle }">
