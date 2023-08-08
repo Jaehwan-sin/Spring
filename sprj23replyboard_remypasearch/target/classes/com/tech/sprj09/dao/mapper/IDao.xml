@@ -14,7 +14,7 @@
                             WHERE BTITLE LIKE '%' || #{param3} || '%'
                     </when>
                     <when test="param4==2">
-                            WHERE BCONTENT LIKE '%' || #{param3} || '%'
+                            WHERE BCONTENT LIKE '%' || #{param3} || '%' 
                     </when>
                     <when test="param4==3">
                             WHERE BTITLE LIKE '%' || #{param3} || '%' OR BCONTENT LIKE '%' || #{param3} || '%'

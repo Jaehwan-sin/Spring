@@ -30,7 +30,7 @@ public interface IDao {
     
 	/* $6 메소드 생성 */
 	public int selectBoardTotCount1(String searchKeyword);
-	
+	 
 	public int selectBoardTotCount2(String searchKeyword);
 	
 	public int selectBoardTotCount3(String searchKeyword);

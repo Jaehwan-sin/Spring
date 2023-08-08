@@ -54,16 +54,17 @@ public class BController {
 					for (int i = 0; i < brdtitle.length; i++) {
 						System.out.println("brdtitle : "+brdtitle[i]);
 					}
-				}
+				}// 없어도 기능 동작엔 문제가 없다.
+				
 				// 변수에 저장 $3
 				if (brdtitle != null) { // 아무것도 선택하지 않으면 null 값이니 null이 아닐때만 for문을 써라.
-					for (String var : brdtitle) {
+					for (String var : brdtitle) { // brdtitle을 한바퀴 돌렸을 때 그 값이 btitle이면 그 변수를 var로 지정
 						if (var.equals("btitle")) {
 							btitle = "btitle";
-							model.addAttribute("btitle","true");// $13
+							model.addAttribute("btitle","true");// 3
 						} else if (var.equals("bcontent")) {
 							bcontent = "bcontent";
-							model.addAttribute("bcontent","true");// $13
+							model.addAttribute("bcontent","true");// 3
 						}
 					}
 				}
@@ -75,14 +76,14 @@ public class BController {
 				if (bt != null) {
 					if (bt.equals("btitle")) {
 						btitle = bt;
-						model.addAttribute("btitle", "true");// $13
+						model.addAttribute("btitle", "true");// 3
 					} 
 				}
 				
 				if (bc != null) {
 					if (bc.equals("bcontent")) {
 						bcontent = bc;
-						model.addAttribute("bcontent", "true");// $13
+						model.addAttribute("bcontent", "true");// 3
 					} 
 				}
 				
@@ -91,7 +92,7 @@ public class BController {
 				if (searchKeyword==null) { // home.jsp에서 list를 누르면 searchKeyword가 null일 수 밖에없어서 빈칸으로 바꿔준다.
 					searchKeyword="";
 				}
-				model.addAttribute("resk",searchKeyword);// $12
+				model.addAttribute("resk",searchKeyword);// 2
 				System.out.println("searchKeyword : "+searchKeyword);
 				
 				/* #3 페이징 처리 */
@@ -140,7 +141,7 @@ public class BController {
 				
 				if (btitle.equals("btitle") && bcontent.equals("")) {
 //					list = dao.list(rowStart, rowEnd, searchKeyword,"1");
-					model.addAttribute("list",dao.list(rowStart, rowEnd, searchKeyword,"1"));// $11
+					model.addAttribute("list",dao.list(rowStart, rowEnd, searchKeyword,"1"));// 1
 				} else if (btitle.equals("") && bcontent.equals("bcontent")) {
 //					list = dao.list(rowStart, rowEnd, searchKeyword,"2");
 					model.addAttribute("list",dao.list(rowStart, rowEnd, searchKeyword,"2"));
@@ -288,7 +289,7 @@ public class BController {
 				/* 댓글달기 */
 //				model.addAttribute("request",request);
 //				bServiceInter = new BReplyService();
-//				bServiceInter.execute(model);
+//				bServiceInter.execute(model); 
 
 				IDao dao = sqlSession.getMapper(IDao.class);
 				

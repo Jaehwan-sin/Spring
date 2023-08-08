@@ -73,10 +73,21 @@ totCnt : ${totRowcnt } <br />
 	 <!-- 페이징 처리 #1 
 	<a href="list?page=1">1</a> -->
 	<!-- #16 -->
+	<!-- 검색 후 이전 버튼을 눌러도 검색결과 유지 -->
 	<c:if test="${searchVO.page>1}">
+		    <a href="list?page=1&sk=${resk}&btitle=${btitle==true?'btitle':''}&bcontent=${bcontent==true?'bcontent':''}">
+	            <i class="fa-solid fa-angle-double-left"></i>
+	        </a>
+	        <a href="list?page=${searchVO.page - 1}&sk=${resk}&btitle=${btitle==true?'btitle':''}&bcontent=${bcontent==true?'bcontent':''}">
+	            <i class="fa-solid fa-angle-left fa-beat"></i>
+	        </a>
+    </c:if>
+    
+    <!-- 그냥 이전 / 처음 버튼 -->
+	<%-- <c:if test="${searchVO.page>1}">
 	        <a href="list?page=1"><i class="fa-solid fa-angles-left"></i></a>
 	        <a href="list?page=${searchVO.page-1 }"><i class="fa-solid fa-angle-left fa-beat"></i></a>
-	</c:if>
+	</c:if> --%>
 	<!-- 14 -->
 	<c:forEach begin="${searchVO.pageStart }" end="${searchVO.pageEnd }" var="i">
 	        <c:choose>
@@ -89,12 +100,25 @@ totCnt : ${totRowcnt } <br />
 	                </c:otherwise>
 	        </c:choose>
 	</c:forEach>
+
 	<!-- 15 화살표 넣기 (페이지 그룹 구분)-->
+	<!-- 검색 후 다음 버튼을 눌러도 검색결과 유지 -->
 	<c:if test="${searchVO.page < searchVO.totPage}">
+	    <a href="list?page=${searchVO.page + 1}&sk=${resk}&btitle=${btitle==true?'btitle':''}&bcontent=${bcontent==true?'bcontent':''}">
+	        <i class="fa-solid fa-angle-right fa-beat"></i>
+	    </a>
+	    <a href="list?page=${searchVO.totPage}&sk=${resk}&btitle=${btitle==true?'btitle':''}&bcontent=${bcontent==true?'bcontent':''}">
+	        <i class="fa-solid fa-angle-double-right"></i>
+	    </a>
+    </c:if>
+    <!-- 그냥 다음 버튼 / 마지막 버튼 -->
+	<%-- <c:if test="${searchVO.page < searchVO.totPage}">
 	        <a href="list?page=${searchVO.page+1 }"><i class="fa-solid fa-angle-right fa-beat"></i></a>
 	        <a href="list?page=${searchVO.totPage }"><i class="fa-solid fa-angles-right"></i></a>
-	</c:if>
-	<div><!-- 검색 $1 form 추가 -->
+	</c:if> --%>
+	
+	<!-- 검색 $1 form 추가 -->
+	<div>
 	       <c:choose>
 	               <c:when test="${btitle }">
 	                       <input type="checkbox" name="searchType" value="btitle" checked />                
