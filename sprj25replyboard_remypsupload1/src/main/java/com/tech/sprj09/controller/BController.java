@@ -185,7 +185,7 @@ public class BController {
 //				System.out.println("uploadPath : "+uploadPath);
 //				String path = uploadPath+attachPath;
 //				System.out.println("path : "+path);
-				String path = "C:\\Users\\goott04\\git\\spring\\sprj25replyboard_remypsupload1\\src\\main\\webapp\\resources\\upload";
+				String path = "C:\\Users\\goott04\\git\\spring\\Spring\\sprj25replyboard_remypsupload1\\src\\main\\webapp\\resources\\upload";
 				
 				/* multipart에서 변형 업로드-5 */	
 				MultipartRequest req = new MultipartRequest(request, path, 1024*1024*20, "utf-8", 

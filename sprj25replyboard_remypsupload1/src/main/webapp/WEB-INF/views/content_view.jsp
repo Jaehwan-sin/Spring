@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,5 +47,10 @@
                         </td>
                 </tr>
         </table>
+        
+<!-- 첨부파일 보여주기 -->
+<c:if test="${content.view.filesrc ne null }">
+    <img border="1" width="100" height="100" src="resources/upload/${content_view.filesrc }" alt="" />
+</c:if>        
 </body>
 </html>
