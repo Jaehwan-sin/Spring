@@ -11,7 +11,8 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 <a href="line1">line1</a>
-<a href="graph1">graph1</a>
-<a href="graph2">graph2</a>
+<a href="graph1">graph1</a> <hr />
+<a href="graph2">graph2</a> <hr />
+<a href="graph3">graph3 from DB</a>
 </body>
 </html>

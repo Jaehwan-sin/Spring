@@ -54,6 +54,10 @@ public class HomeController {
 		return null;
 	}
 	
-	
+	@RequestMapping("graph3")
+	public String graph3() {
+		
+		return null;
+	}
 }
 
