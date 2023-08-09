@@ -10,6 +10,7 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-<a href="list">list</a> <!-- 순서 1번째 -->
+<a href="list">list</a> <!-- 순서 1번째 --> <br />
+<a href="emp">emp from DB</a>
 </body>
 </html>

@@ -36,4 +36,10 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping("/emp")
+	public String emp() {
+		
+		return null;
+	}
+	
 }
