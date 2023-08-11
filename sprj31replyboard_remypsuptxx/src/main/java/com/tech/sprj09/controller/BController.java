@@ -117,7 +117,7 @@ public class BController {
 		bServiceInter.execute(model);
 
 		//return "content_view?bid="+bid;
-		return null;
+		return null; 
 	}
 	
 	@RequestMapping("/content_update")
