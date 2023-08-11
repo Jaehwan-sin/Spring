@@ -13,6 +13,7 @@
 <a href="main1">main1</a><br />
 <a href="main2">main2</a><br />
 <a href="main3">main3</a><br />
-<a href="main4">main4</a><br />
+<a href="board.list">board.list</a><br />
+<a href="board.detail">board.detail</a><br />
 </body>
 </html>

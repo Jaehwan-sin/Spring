@@ -60,12 +60,22 @@ public class HomeController {
 		return "main3";	
 	}
 	
-	@RequestMapping(value = "main4", method = RequestMethod.GET)
-	public String main4(Locale locale, Model model) {	
+	@RequestMapping(value = "board.list", method = RequestMethod.GET)
+	public String list(Locale locale, Model model) {	
 		
 		model.addAttribute("id1","honggildong");
 		model.addAttribute("addr","seoul");
 		
-		return "main4/center4";	
+		return "board/list";	
 	}
+	
+	@RequestMapping(value = "board.detail", method = RequestMethod.GET)
+	public String detail(Locale locale, Model model) {	
+		
+		model.addAttribute("id1","honggildong");
+		model.addAttribute("addr","seoul");
+		
+		return "board/detail";	
+	}
+	
 }
