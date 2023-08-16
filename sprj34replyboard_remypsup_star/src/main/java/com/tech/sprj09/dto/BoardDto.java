@@ -1,0 +1,104 @@
+package com.tech.sprj09.dto;
+
+import java.sql.Timestamp;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor // 생성자 호출
+@NoArgsConstructor // source - using fields 대신 하는 코드
+// 16 getter,setter 작업, 생성자 작업 / 컨트롤+시프트+y 소문자
+public class BoardDto {
+	
+	// 오라클 테이블 정보 긁어오기
+	private int bid;
+	private String bname;
+	private String btitle;
+	private String bcontent;
+	private Timestamp bdate;
+	private int bhit;
+	private int bgroup;
+	private int bstep;
+	private int bindent;
+	private String filesrc;
+	
+//	// 기본생성자
+//	public BoardDto() {
+//		// TODO Auto-generated constructor stub
+//	}
+//	
+//	/* source - using fields */
+//	public BoardDto(int bid, String bname, String btitle, String bcontent, Timestamp bdate, int bhit, int bgroup,
+//			int bstep, int bindent) {
+//		super();
+//		this.bid = bid;
+//		this.bname = bname;
+//		this.btitle = btitle;
+//		this.bcontent = bcontent;
+//		this.bdate = bdate;
+//		this.bhit = bhit;
+//		this.bgroup = bgroup;
+//		this.bstep = bstep;
+//		this.bindent = bindent;
+//	}
+//
+//	public int getBid() {
+//		return bid;
+//	}
+//	public void setBid(int bid) {
+//		this.bid = bid;
+//	}
+//	public String getBname() {
+//		return bname;
+//	}
+//	public void setBname(String bname) {
+//		this.bname = bname;
+//	}
+//	public String getBtitle() {
+//		return btitle;
+//	}
+//	public void setBtitle(String btitle) {
+//		this.btitle = btitle;
+//	}
+//	public String getBcontent() {
+//		return bcontent;
+//	}
+//	public void setBcontent(String bcontent) {
+//		this.bcontent = bcontent;
+//	}
+//	public Timestamp getBdate() {
+//		return bdate;
+//	}
+//	public void setBdate(Timestamp bdate) {
+//		this.bdate = bdate;
+//	}
+//	public int getBhit() {
+//		return bhit;
+//	}
+//	public void setBhit(int bhit) {
+//		this.bhit = bhit;
+//	}
+//	public int getBgroup() {
+//		return bgroup;
+//	}
+//	public void setBgroup(int bgroup) {
+//		this.bgroup = bgroup;
+//	}
+//	public int getBstep() {
+//		return bstep;
+//	}
+//	public void setBstep(int bstep) {
+//		this.bstep = bstep;
+//	}
+//	public int getBindent() {
+//		return bindent;
+//	}
+//	public void setBindent(int bindent) {
+//		this.bindent = bindent;
+//	}
+	
+}
