@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tech.sWeb05.dao.ReviewDao">
+	<resultMap type="com.tech.sWeb05.dto.Dept" id="Dept">
+		<result column="DEPTNO" property="deptno" />
+		<result column="DNAME" property="dname" />
+		<result column="LOC" property="loc" />
+	
+	</resultMap>
+	<resultMap type="com.tech.sWeb05.dto.Emp" id="Emp">
+		<result column="EMPNO" property="empno" />
+		<result column="ENAME" property="ename" />
+		<result column="JOB" property="job" />
+		<result column="MGR" property="mgr" />
+		<result column="HIREDATE" property="hiredate" />
+		<result column="SAL" property="sal" />
+		<result column="COMM" property="comm" />
+		<result column="DEPTNO" property="deptno" />
+		<collection property="dept" resultMap="Dept"></collection>
+	
+	</resultMap>
+
+	<select id="getDeptEmpJoin" parameterType="com.tech.sWeb05.dto.Emp"  resultMap="Emp">
+		SELECT E.EMPNO,E.MGR,E.ENAME,E.JOB,E.DEPTNO,D.DNAME
+		FROM EMP E INNER JOIN DEPT D
+		ON E.DEPTNO=D.DEPTNO
+	</select>
+	
+	<select id="getEmp" resultType="com.tech.sWeb05.dto.Emp">
+		SELECT * FROM EMP
+	</select>
+	
+	<resultMap type="com.tech.sWeb05.dto3.Grade" id="Grade">
+      <result column="GRADE" property="grade" />
+      <result column="MIN_SCORE" property="min_score" />
+      <result column="MAX_SCORE" property="max_score" />
+   </resultMap>
+   
+   <resultMap type="com.tech.sWeb05.dto3.Subject" id="Subject">
+      <result column="SUBJECT_ID" property="subject_id" />
+      <result column="SUBJECT_NAME" property="subject_name" />
+   </resultMap>
+   
+   <resultMap type="com.tech.sWeb05.dto3.Student2" id="Student2">
+      <result column="NO" property="no" />
+      <result column="NAME" property="name" />
+      <result column="SUBJECT_ID" property="subject_id" />
+      <result column="SCORE" property="score" />
+      
+      <collection property="grade" resultMap="Grade"></collection>
+      <collection property="subject" resultMap="Subject"></collection>
+      
+   </resultMap>
+	
+	<select id="getStu2SubGrade" parameterType="com.tech.sWeb05.dto3.Student2" resultMap="Student2">
+	   SELECT S.NAME,B.SUBJECT_NAME,S.SCORE,G.GRADE
+		FROM STUDENT2 S JOIN SUBJECT B
+		ON S.SUBJECT_ID=B.SUBJECT_ID
+		JOIN GRADE G
+		ON S.SCORE BETWEEN G.MIN_SCORE AND G.MAX_SCORE
+	</select>
+
+</mapper>

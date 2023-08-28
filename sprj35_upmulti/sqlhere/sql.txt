@@ -1,0 +1,15 @@
+create table rebrdimgtb
+( rebno number primary key,
+bid number,
+reborgfile varchar2(100),
+rebchgfile varchar2(100)
+);
+
+drop table rebrdimgtb purge;
+create sequence rebrdimgtb_seq;
+select * from rebrdimgtb;
+
+--결과물이 나의 의도데로 적용된후에 데이터가 적절히 삭제되고(매칭되고) 적용하세요
+alter table rebrdimgtb
+add CONSTRAINT fk_rebrdimgtb_bid foreign key(bid) REFERENCES replyboard(bid);
+commit;

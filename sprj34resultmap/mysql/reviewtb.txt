@@ -1,0 +1,14 @@
+create table reviewtb(
+review varchar2(200),
+repoint number);
+select * from reviewtb;
+-------위는 1차안, 아래 2차안 다시 표현해보기----
+create table reviewtb(
+reno number,
+review varchar2(200),
+repoint number);
+select * from reviewtb;
+
+create sequence reviewtb_seq;
+
+drop table reviewtb purge;
